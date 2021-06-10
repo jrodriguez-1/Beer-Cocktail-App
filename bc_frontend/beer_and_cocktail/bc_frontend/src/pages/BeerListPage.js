@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios'
 import NavBar from '../components/NavBar'
 import SideBar from '../components/SideBar'
 import '../css/beerList.css'
-import Header from '../components/Header'
 import styled from 'styled-components'
+import { useHistory } from 'react-router';
+
 
 
 const BeerListPage = (props) => {
+    let history = useHistory();
     const [beers, setBeers] = useState();
     const [fav, setFav] = useState();
+ 
 
     useEffect( () => {
         const allBeerHandler = async () =>{
@@ -21,26 +24,30 @@ const BeerListPage = (props) => {
         allBeerHandler()
     },[]);
 
-    const onClickHandler = async () => {
-       const data = await axios.post('http://localhost3000')
+    const addClickHandler = async () => {
+       const data = await axios.post('http://localhost3000/favorites')
         console.log(data)
         setFav(data.name)
     };
 
-        onClickHandler()
+        addClickHandler()
 
-    
+
     return (
         <div>
-        <Header/>
+        <NavBar/>
         <SideBar/> 
-        <div className="BeerListPage">
+        <div className="beerlist">
+            <h1 className='beer-title'>Beers</h1>
             {beers?.map((beer)=>(
             <div>
         
-        <button><h3>{beer.name}</h3></button>
-                <img src={beer.image_url} alt=""/>
-            <Mybutton onClick={onClickHandler}>Add to My Beer List</Mybutton>
+        <button className='beer-button'><h3 classname='beerpage-name' onClick={() => {
+                history.push({ 
+                    pathname: `/beerdetail/${beer.id}`,
+                   });}}>{beer.name}</h3></button>
+                <img className='beerpage-image' src={beer.image_url} alt=""/>
+            <button className='add-button' onClick={addClickHandler}>Add to My Beer List</button>
             </div>
             ))}     
       </div>
@@ -64,7 +71,8 @@ margin: 40px auto;
 border-radius: 10px;
 padding-bottom: 20px;
 font-size: 24px;
+transform: translateX(700px);
 &:hover{
-    color: white;
+    color: gray;
 }
 `

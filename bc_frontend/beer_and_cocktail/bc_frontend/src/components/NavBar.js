@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from './Button';
 import { Link } from 'react-router-dom';
 import '../css/Nav.css';
 import slogo from '../images/slogo.png'
@@ -42,6 +41,7 @@ window.addEventListener('scroll', changeBackground);
     <>
       <nav className={navbar ? 'navbar active' : 'navbar'}>
         <div className='navbar-container'>
+        
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
           <img src={slogo} alt=""/>
           </Link>
@@ -141,6 +141,7 @@ button:hover{
 const Check = styled.div`
 padding-left: 30px;
 `
+
 
 
 

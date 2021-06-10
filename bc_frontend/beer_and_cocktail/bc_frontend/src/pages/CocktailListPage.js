@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { makeStyles } from '@material-ui/core/styles';
 // import Card from '@material-ui/core/Card';
 // import CardContent from '@material-ui/core/CardContent';
 // import CardMedia from '@material-ui/core/CardMedia';
@@ -12,14 +11,17 @@ import SideBar from '../components/SideBar'
 import '../css/cocktailList.css'
 import styled from 'styled-components'
 import Drinks from '../components/Drinks'
+import { useHistory } from 'react-router';
 
 
 
-const CocktailListPage = () => {
+
+const CocktailListPage = (props) => {
     const [categories, setCategories] = useState();
     const [cocktails, setCocktails] = useState([]);
     const [cat, setCat] = useState('');
-    // const [detail, setDetail] = useState('')
+    let history = useHistory();
+
 
     useEffect( () => {
         axios.get(`https://thecocktaildb.com/api/json/v2/9973533/list.php?c=list`)
@@ -47,43 +49,27 @@ const CocktailListPage = () => {
         const choice = evt.target.textContent.replaceAll(' ','_')
         setCat(choice)
 
-        // useEffect( () => {
-        //     if (cat !== ''){
-        //     axios.get(`https://thecocktaildb.com/api/json/v1/1/search.php?s=${detail}`)
-        //         .then(res => {
-        //             console.log(res)
-        //             setCocktails(res.data.drinks.slice(0,20))
-        //         })
-        //         .catch(err => {
-        //             console.log(err.message)
-        //         })}
-        // },[cat]);
-    
-        
-
-    // const secondClickHandler =(evt) => {
-    //     const nextChoice = evt.target.textContent.replaceAll(' ','_')
-    //     setDrink(nextChoice)
-    
-        
-
-
     }
 
     return (
         <div>
         <NavBar/>
         <SideBar/> 
-        {cocktails.length !==0 ? <h2>{cat.replace('_',' ')}</h2> : <h2>Categories</h2>}
+        {cocktails.length !==0 ? <h2 className='categories'>{cat.replace('_',' ')}</h2> : <h1 className='category-title'>Categories</h1>}
         <Contain>  
             
         {cocktails.length !==0 ? <Drinks drinks={cocktails}/> : 
-        <div className="CocktailListPage"> 
+        <div className="cocktailListPage"> 
             {categories?.map((category)=>(
-            <div>
-                
-                
-                <button onClick={onClickHandler}><p>{category.strCategory}</p></button>
+            <div className='cocktail-cat' onClick={onClickHandler}><p className='str-category'>{category.strCategory}</p>
+            
+            {/* <div className='detail-container'>
+                <button className='detail-button'> <h3 className='detail-display' onClick={() => {
+                    history.push({
+                        pathname: `/cocktaildetail/${drinks.idDrink}`
+                    })
+                }} ></h3> </button>
+                </div> */}
 
             </div>
             ))}     
@@ -115,8 +101,6 @@ font-size: 24px;
 &:hover{
     color: white;
 }
-`
-const MyButton = styled.button`
 `
 
 

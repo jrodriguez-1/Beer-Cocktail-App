@@ -1,133 +1,41 @@
-import React from 'react'
-import '../App.css'
-import styled from "styled-components";
-import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
+import React, { useState } from 'react';
+import * as FaIcons from 'react-icons/fa';
+import * as AiIcons from 'react-icons/ai';
+import { Link } from 'react-router-dom';
+import { SideData } from './SideData';
+import '../css/SideNav.css';
+import { IconContext } from 'react-icons';
 
+function Sidebar() {
+  const [sidebar, setSidebar] = useState(false);
 
+  const showSidebar = () => setSidebar(!sidebar);
 
-class SideNav extends React.Component {
-      constructor(props) {
-        super(props);
-        this.state = {
-          activePath: props.location.pathname ,
-          items: [
-            {
-              path: '/', 
-              name: 'Home',
-              css: 'fa fa-fw fa-home',
-              key: 1 
-            },
-            {
-              path: '/beer',
-              name: 'Beers',
-              css: 'fas fa-beer',
-              key: 2
-            },
-            {
-              path: '/cocktails',
-              name: 'CockTails',
-              css: 'fas fa-cocktail',
-              key: 3
-            },
-            {
-              path: '/favorites',
-              name: 'List',
-              css: 'fas fa-heartbeat',
-              key: 4
-            }
-          ]
-        }  
-      } 
-
-      onItemClick = (path) => {
-        this.setState({ activePath: path });
-      }
-      render() {
-        const { items, activePath } = this.state;
-        return (
-          <StyledSideNav>
-            {
-             
-              items.map((item) => {
-               
-                return (
-                  <NavItem 
-                  path={item.path} 
-                  name={item.name} 
-                  css={item.css} 
-                  onItemClick={this.onItemClick} 
-                  active={item.path === activePath} 
-                  key={item.key}
-                  />
-                );
-              })
-            }
-          </StyledSideNav>
-        );
-      }
-    } 
-
-const RouterSideNav = withRouter(SideNav);
-
-class NavItem extends React.Component {
-  
-    handleClick = () => {
-        const { path, onItemClick } = this.props;
-        onItemClick(path);
-      }
-    render() {
-        const { active } = this.props;
-     
-      return (
-        <StyledNavItem active={active}>
-          
-        <Link to={this.props.path} className={this.props.css} onClick={this.handleClick}>
-        <NavIcon></NavIcon>
-        </Link>
-        </StyledNavItem>
-        
-      );
-    }
-  }
-
-const SideBar = () => {
-    return (
-        <div>
-            <RouterSideNav></RouterSideNav>
+  return (
+    <>
+      <IconContext.Provider value={{ color: '#fff' }}>
+        <div className='sidebar'>
+          <Link to='#' className='menu-bars'>
+            <FaIcons.FaBars onClick={showSidebar} />
+          </Link>
         </div>
-    )
+        <nav className={sidebar ? 'side-menu active' : 'side-menu'}>
+          <ul className='side-menu-items' onClick={showSidebar}>
+            {SideData.map((item, index) => {
+              return (
+                <li key={index} className={item.cName}>
+                  <Link to={item.path}>
+                    {item.icon}
+                    <span>{item.title}</span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </IconContext.Provider>
+    </>
+  );
 }
 
-export default SideBar;
-
-
-const StyledSideNav = styled.div`
-  position: fixed;    
-  height: 100%;
-  width: 80px;     
-  z-index: 1;     
-  top: 3.4em;   
-  background: linear-gradient(90deg, #B8860B 0%, rgb(26, 23, 23) 100%);
-  overflow-x: hidden;     
-  padding-top: 10px;
-`;
-
-const StyledNavItem = styled.div`
-  height: 70px;
-  width: 75px; 
-  text-align: center; 
-  margin-bottom: 0;   
-  a {
-    font-size: 2.7em;
-    color: ${(props) => props.active ? "##B8860B" : "#000000"};
-    :hover {
-      opacity: 0.7;
-      text-decoration: none; 
-      box-shadow: 0 0 50px #ff2121;
-      transition-delay: 0.5ms;
-    }  
-  }
-`;
-const NavIcon = styled.div`
-
-`;
+export default Sidebar;

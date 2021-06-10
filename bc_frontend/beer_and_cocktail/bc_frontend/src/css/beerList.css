@@ -1,108 +1,136 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
-      'Lucida Sans', Arial, sans-serif;
-  }
   
   body {
     background: linear-gradient(
       90deg,
-      rgb(88, 88, 88) 0%,
-      rgb(255, 255, 255) 100%
+      rgb(165, 0, 0) 0%,
+      rgb(0, 0, 0) 100%
     );
   }
-  
-  h1 {
+  /* beer-detail page */
+  .beer-name {
     display: flex;
     flex-direction: column;
-    justify-content: start;
-    width: 520px;
-    min-height: 10px;
-    /* background: #161a2b; */
-    text-align: center;
-    margin: 128px auto;
-    border-radius: 10px;
-    padding-bottom: 32px;
-  }
-  
-  h1 {
-    margin: 32px 0;
-    color: #fff;
-    font-size: 500px;
-    font-family: Fantasy;
+    text-align:center;
+    color: rgb(255, 255, 255); 
     font-weight: bold;
-    font-weight: 900;
-    font-size: xx-large;
+    font-size:60px;
+    font-family: 'Montserrat', Arial, sans-serif;
+    text-transform: uppercase;
+    text-shadow: 0 0 0.15em #b37b04;
+    user-select: none;
+    white-space: nowrap;
+    filter: contrast(0.007em);
   }
-  
-  
-  img {
+
+  .beer-image {
     margin: auto;
-    width: 50%;
+    width: 280px;
     padding: 70px;
     padding-bottom: 50px;
-    padding-top: 50px;
+    padding-top: 60px;
     align-items: left;
-    /* flex-direction: column; */
+    flex-direction: column;
     margin: 32px auto;
-    width: 320px;
     direction: ltr;
+    transform: translateX(50px);
   }
   
-p {
-  font-family: fantasy;
-}
-Header{
-  font: fantasy;
-  font-size: large;
-}
+  .beer-detail-list{
+    display:list-item;
+    flex-direction: column;
+    text-align: left;
+    padding-left: 400px;
+    transform: translateY(-500px);
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 100px;
+    color: #fafafa;
+
+  }
   
-h3 {
+
+  /* beerlist page */
+
+ 
+.beer-title{
   display: flex;
+    flex-direction: column;
+    text-align:center;
+    color: rgb(255, 255, 255); 
+    font-weight: bold;
+    font-size:80px;
+    font-family: 'Montserrat', Arial, sans-serif;
+    /* text-transform: uppercase; */
+    text-shadow: 0 0 0.15em #b37b04;
+    user-select: none;
+    white-space: nowrap;
+    filter: contrast(0.007em);
+}
+
+
+.beerpage-image{
+  margin: auto;
+  width: 280px;
+  padding: 70px;
+  padding-bottom: 50px;
+  padding-top: 60px;
+  align-items: left;
   flex-direction: column;
-  justify-content: start;
-  width: 450px;
-  min-height: 100px;
-  background: #161a2b;
-  text-align: center;
-  margin: 128px auto;
-  border-radius: 10px;
-  padding-bottom: 32px;
-  margin: 20px 0;
-  color: #fff;
-  font-size: 50px;
-  align-content: center;
-  padding: 16px;
-  border: none;
-  /* border-radius: 0 4px 4px 0; */
-  cursor: pointer;
-  outline: none;
-  background: linear-gradient(
-    90deg,
-    rgb(0, 0, 0) 0%,
-    rgb(177, 129, 255) 100%
-  );
-  color: #fff;
-  text-transform: capitalize;
+  margin: 32px auto;
+  direction: ltr;
+  transform: translateX(500px);
+
 }
 
+.beer-button{
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+justify-content: start;
+width: 200px;
+min-height: 100px;
+text-align: center;
+margin: 40px auto;
+border-radius: 10px;
+padding-bottom: 20px;
+font-size: 24px;
+transform: translateX(300px);
+text-decoration: none;
+border-radius: 10px;
+color: rgba(0, 0, 0, 0.8);
+background: rgb(255, 255, 255);
+font-weight: normal;
+text-transform: uppercase;
+transition: all 0.5s ease-in-out;
+}
 
-button {
-    text-decoration: none;
-    border-radius: 10px;
-    color: rgba(0, 0, 0, 0.8);
-    background: rgb(0, 0, 0);
-    font-weight: normal;
-    text-transform: uppercase;
-    transition: all 0.5s ease-in-out;
-  }
-
-
-button:hover{
-    background: #21ebff;
+.beer-button:hover{
+    background: #808080;
     color: #111;
-    box-shadow: 0 0 50px #ff2121;
-    transition-delay: 0.5ms;
+    box-shadow: 0 0 50px #fafafa;
+    /* transition-delay: 0.5ms; */
+} 
+
+
+.add-button{
+  box-sizing: border-box;
+margin: 0;
+padding: 0;
+justify-content: start;
+width: 200px;
+min-height: 100px;
+text-align: center;
+margin: 40px auto;
+border-radius: 10px;
+padding-bottom: 20px;
+font-size: 24px;
+transform: translateX(700px);
+transition: all 0.5s ease-in-out;
 }
+
+.add-button:hover{
+  background: #808080;
+  color: #111;
+  box-shadow: 0 0 50px #f7f5f5;
+  /* transition-delay: 0.5ms; */
+} 
