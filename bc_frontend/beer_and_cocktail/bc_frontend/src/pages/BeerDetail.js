@@ -42,7 +42,7 @@ const BeerDetail = (props) => {
                         <h4><span>Food Parings:</span>{beer.food_pairing}</h4>
                         <h4>ABV: {beer.abv}</h4>
                     </li>
-                </ul>
+                </ul> 
 
             </div>
         ))}
